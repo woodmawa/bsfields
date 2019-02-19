@@ -10,7 +10,7 @@
                     <button class="btn btn-icon-fixed-width btn-outline-secondary "
                             disabled aria-disabled="true"
                             type="button"  >
-                    <i class="fas fa-link" />
+                        <i class="fas fa-link"></i>
                     </button>
                 </div>
             </div>

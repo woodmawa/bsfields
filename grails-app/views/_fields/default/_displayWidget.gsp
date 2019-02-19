@@ -16,16 +16,15 @@
             <div class="input-group text col-sm-8"  >
                 <input type='text' readonly class="form-control" value ="${pageScope.variables.value}" placeholder="<empty>" />
                 <div class="input-group-append" >
-                    <g:set var="propLink" value="${bsf.getPropertyValuesController()}" />
-                    <%--<a href="${propLink}" class="btn btn-icon-fixed-width btn-outline-secondary " type="button">
-                    <i class="fas fa-link" />
-
-                    </a> --%>
+                    <g:if test="${value == null}">
+                        <g:set var="destination" value="" />
+                    </g:if>
+                    <g:else>
+                        <g:set var="destination" value="${bsf.getPropertyValuesController()}" />
+                    </g:else>
                     <button class="btn btn-icon-fixed-width btn-outline-secondary btn-link"
-                            type="button" onclick="location.href='${propLink}';" >
-                        <i class="fas fa-link">
-
-                        </i>
+                            type="button" onclick="location.href='${destination}';" >
+                        <i class="fas fa-link" />
                     </button>
                 </div>
             </div>

@@ -14,8 +14,9 @@
                 <input class="form-control" readonly type="text" value="${value?.toString()}">  <!-- form-control links field with the span -->
                 <div class="input-group-append dropdown dropright ">
                     <button class="btn btn-icon-fixed-width btn-outline-secondary " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-list-ol"></i>
                     </button>
+
                 </div>
         </div>
     </div>

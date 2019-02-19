@@ -42,10 +42,11 @@ class BootstrapTestController {
             return
         }
 
-        //hack
+        //hack - as validation is failing - copy seems to fix ?
 
         BootstrapTest bst  = new BootstrapTest()
         bst.strProp = bootstrapTest.strProp
+        bst.typeProp = bootstrapTest.typeProp
         bst.ldtProp = bootstrapTest.ldtProp
         bst.dtProp = bootstrapTest.dtProp
         bst.mapProp = bootstrapTest.mapProp
