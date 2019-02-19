@@ -11,7 +11,7 @@ class BootstrapTest {
     }
 
     String strProp = "init value"
-    Map mapProp = ['Peter': 'Grimes', 'Edward':'Elgar']
+    //Map mapProp = ['Peter': 'Grimes', 'Edward':'Elgar']
     BootstrapTypes typeProp = BootstrapTypes.Plastic
     LocalDateTime ldtProp = LocalDateTime.now()
     LocalDate dtProp = LocalDate.now()
@@ -23,7 +23,7 @@ class BootstrapTest {
         typeProp nullable:false
         ldtProp nullable:true
         dtProp nullable:true
-        mapProp nullable:true
+        //mapProp nullable:true
         holder nullable:true
 
     }

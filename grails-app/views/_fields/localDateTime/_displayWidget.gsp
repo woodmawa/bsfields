@@ -10,7 +10,7 @@
     <div class="container fieldcontain col-sm-12" >
         <div class="form-group form-inline">
             <div class="input-group text col-sm-8"  >
-                <input type='text' readonly class="form-control" value="${value?.format(DateTimeFormatter.ofPattern(localDatePattern, request.getLocale())) }"/>
+                <input name="${property}" type='datetime' readonly class="form-control" value="${value }"/>
                 <div class="input-group-append" >
                     <button class="btn btn-icon-fixed-width btn-outline-secondary btn-block" type="button" >
                         <i class="fas fa-calendar"></i>

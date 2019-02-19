@@ -73,7 +73,8 @@ class BootstrapTestController {
     }
 
     def edit(Long id) {
-        respond bootstrapTestService.get(id)
+        def bs = bootstrapTestService.get(id)
+        respond bs
     }
 
     def update(BootstrapTest bootstrapTest) {
@@ -81,6 +82,25 @@ class BootstrapTestController {
             notFound()
             return
         }
+
+        //hack - to get validation to work
+        BootstrapTest bst = new BootstrapTest()
+        bst.strProp = bootstrapTest.strProp
+        bst.typeProp = bootstrapTest.typeProp
+        //bst.ldtProp = bootstrapTest.ldtProp
+        bst.dtProp = bootstrapTest.dtProp
+        //bst.mapProp = bootstrapTest.mapProp
+        bst.id = bootstrapTest.id
+
+        if (!bootstrapTest.validate()){
+            println "object delivered to update action from edit form doesnt validate "
+            respond bootstrapTest.errors, view:'edit'
+            return
+        }
+        /*else {
+            bootstrapTest = bst
+            bootstrapTest.save()
+        }*/
 
         try {
             bootstrapTestService.save(bootstrapTest)

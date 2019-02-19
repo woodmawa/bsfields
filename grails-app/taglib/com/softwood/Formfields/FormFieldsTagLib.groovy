@@ -545,7 +545,7 @@ class FormFieldsTagLib {
             value = codecLookup.lookupEncoder(encoding).encode(value)
         }
 
-        [
+        Map model = [
                 bean              : propertyAccessor.rootBean,
                 property          : propertyAccessor.pathFromRoot,
                 type              : propertyAccessor.propertyType,
@@ -559,6 +559,7 @@ class FormFieldsTagLib {
                 invalid           : attrs.containsKey("invalid") ? Boolean.valueOf(attrs.remove('invalid')) : propertyAccessor.invalid,
                 prefix            : resolvePrefix(attrs.remove('prefix')),
         ]
+        model
     }
 
     private CharSequence renderWidget(BeanPropertyAccessor propertyAccessor, Map model, Map attrs = [:], String widgetFolder, String theme) {
