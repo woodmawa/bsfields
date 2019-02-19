@@ -3,6 +3,10 @@ package com.softwood.domain
 import com.softwood.domain.BootstrapTest
 import com.softwood.domain.BootstrapTestService
 import grails.validation.ValidationException
+
+import java.time.LocalDate
+import java.time.LocalDateTime
+
 import static org.springframework.http.HttpStatus.*
 
 class BootstrapTestController {
@@ -38,6 +42,19 @@ class BootstrapTestController {
             return
         }
 
+        //hack
+
+        BootstrapTest bst  = new BootstrapTest()
+        bst.strProp = bootstrapTest.strProp
+        bst.ldtProp = bootstrapTest.ldtProp
+        bst.dtProp = bootstrapTest.dtProp
+        bst.mapProp = bootstrapTest.mapProp
+
+        if (!bst.validate())
+        {
+            println "got errors " + bst.errors.fieldErrors
+        }
+        bootstrapTest = bst
         try {
             bootstrapTestService.save(bootstrapTest)
         } catch (ValidationException e) {

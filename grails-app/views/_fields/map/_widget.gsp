@@ -9,7 +9,7 @@
                 bean:pageScope.variables.bean,
                 property:pageScope.variables.property)
     %>
-    <input class="form-control" type="text" value="${resultStr}">  <!-- form-control links field with the span -->
+    <input name="${property}" class="form-control" type="text" value="${resultStr}">  <!-- form-control links field with the span -->
     <div class="input-group-append dropdown dropright ">
         <button class="btn btn-icon-fixed-width btn-outline-secondary dropdown-toggle btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div class="dropdown-menu col-xs-12">

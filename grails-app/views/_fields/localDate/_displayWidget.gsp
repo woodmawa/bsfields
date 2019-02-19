@@ -1,5 +1,5 @@
 <%@ page import="java.time.LocalDate; java.time.format.DateTimeFormatter" %>
-<g:set var="localDatePattern" value="${message(code: 'default.localDateTime.format', default: 'yyyy-MM-dd HH:mm')}"/>
+<g:set var="localDatePattern" value="${message(code: 'default.localDate.format', default: 'yyyy-MM-dd')}"/>
 <g:if test="${actionName == 'index'}">
     ${value?.format(DateTimeFormatter.ofPattern(localDatePattern, request.getLocale()))}
 </g:if>
