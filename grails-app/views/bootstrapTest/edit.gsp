@@ -33,6 +33,7 @@
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit value="update2" class="update2" action="Update2" />
                 </fieldset>
             </g:form>
         </div>

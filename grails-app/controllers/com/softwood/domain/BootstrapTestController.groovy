@@ -3,9 +3,11 @@ package com.softwood.domain
 import com.softwood.domain.BootstrapTest
 import com.softwood.domain.BootstrapTestService
 import grails.validation.ValidationException
+import org.springframework.validation.FieldError
 
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 import static org.springframework.http.HttpStatus.*
 
@@ -42,20 +44,29 @@ class BootstrapTestController {
             return
         }
 
-        //hack - as validation is failing - copy seems to fix ?
+        //special handling for <input type="date" or "datetime-local" as these are delivered as strings
+        //in params map and will fail validation on domain properties
 
-        BootstrapTest bst  = new BootstrapTest()
-        bst.strProp = bootstrapTest.strProp
-        bst.typeProp = bootstrapTest.typeProp
-        bst.ldtProp = bootstrapTest.ldtProp
-        bst.dtProp = bootstrapTest.dtProp
-        bst.mapProp = bootstrapTest.mapProp
+        LocalDateTime ldtProp
+        LocalDate dtProp
 
-        if (!bst.validate())
-        {
-            println "got errors " + bst.errors.fieldErrors
+        if (bootstrapTest.hasErrors()) {
+            bootstrapTest.clearErrors()
+            try {
+                ldtProp = LocalDateTime.parse(params.ldtProp?.toString()) //ISO_LOCAL_DATE_TIME
+                dtProp = LocalDate.parse(params.dtProp?.toString(), DateTimeFormatter.ISO_LOCAL_DATE) //ISO_LOCAL_DATE
+                bootstrapTest.ldtProp =  ldtProp
+                bootstrapTest.dtProp = dtProp
+                bootstrapTest.validate()
+            } catch (ex) {
+                println "exception $ex.message"
+                respond bootstrapTest.errors, view:'edit'
+                return
+            }
         }
-        bootstrapTest = bst
+
+
+
         try {
             bootstrapTestService.save(bootstrapTest)
         } catch (ValidationException e) {
@@ -83,24 +94,24 @@ class BootstrapTestController {
             return
         }
 
-        //hack - to get validation to work
-        BootstrapTest bst = new BootstrapTest()
-        bst.strProp = bootstrapTest.strProp
-        bst.typeProp = bootstrapTest.typeProp
-        //bst.ldtProp = bootstrapTest.ldtProp
-        bst.dtProp = bootstrapTest.dtProp
-        //bst.mapProp = bootstrapTest.mapProp
-        bst.id = bootstrapTest.id
+        LocalDateTime ldtProp
+        LocalDate dtProp
 
-        if (!bootstrapTest.validate()){
-            println "object delivered to update action from edit form doesnt validate "
-            respond bootstrapTest.errors, view:'edit'
-            return
+        if (bootstrapTest.hasErrors()) {
+            bootstrapTest.clearErrors()
+            try {
+                ldtProp = LocalDateTime.parse(params.ldtProp?.toString()) //ISO_LOCAL_DATE_TIME
+                dtProp = LocalDate.parse(params.dtProp?.toString(), DateTimeFormatter.ISO_LOCAL_DATE) //ISO_LOCAL_DATE
+                bootstrapTest.ldtProp =  ldtProp
+                bootstrapTest.dtProp = dtProp
+                bootstrapTest.validate()
+            } catch (ex) {
+                println "exception $ex.message"
+                respond bootstrapTest.errors, view:'edit'
+                return
+            }
         }
-        /*else {
-            bootstrapTest = bst
-            bootstrapTest.save()
-        }*/
+
 
         try {
             bootstrapTestService.save(bootstrapTest)

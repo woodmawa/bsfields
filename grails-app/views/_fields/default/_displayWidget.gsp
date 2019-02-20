@@ -24,9 +24,9 @@
                     </g:else>
                     <button class="btn btn-icon-fixed-width btn-outline-secondary btn-link"
                             type="button" onclick="location.href='${destination}';" >
-                    <i class="fas fa-link" />
+                    <i class="fas fa-link"></i>
 
-                </button>
+                    </button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@
 <g:set var="localDateTimePattern" value="${message(code: 'default.localDateTime.format',default: 'yyyy-MM-dd HH:mm')}"/>
 
 <div class="input-group date col-sm-8"  >
+    <g:set var="formattedLdt" value="${value?.format(DateTimeFormatter.ofPattern(localDateTimePattern, request.getLocale())) }" />
+
     <input id="${property}-label" name="${property}" type='datetime-local' class="form-control" value="${value}" placeholder="<empty>"/>
     <div class="input-group-append" >
         <button class="btn btn-icon-fixed-width btn-outline-secondary btn-block" disabled aria-disabled="true" type="button" >
