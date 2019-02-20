@@ -32,7 +32,6 @@ class BootstrapTest {
 
     /* handle browser posted string */
     void setLdtProp(String browersString, format = null) {
-        println "fired ldt convertor with string  $browersString "
         LocalDateTime ldt
         try {
             if (!format)
@@ -50,16 +49,12 @@ class BootstrapTest {
     }
 
     void setLdtProp(LocalDateTime ldt) {
-        println "fired ldt convertor with LDT  $ldt"
-
         ldtProp = ldt
-
     }
 
 
     /* handle browser posted string */
     void setDtProp(String browersString, format = null) {
-        println "fired dt convertor string $browersString"
 
         LocalDate dt
         try {
@@ -78,15 +73,11 @@ class BootstrapTest {
     }
 
     void setDtProp(LocalDate dt) {
-        println "fired dt convertor DT $dt"
-
         dtProp = dt
-
     }
 
     /* handle browser posted map representation */
     void setMapProp (String browserString) {
-        println "fired map convertor mapStr $browserString"
 
         Map map = new HashMap()
 
@@ -100,8 +91,6 @@ class BootstrapTest {
 
     //needs this form as well or otherwise mapProp is not generated for the domain class
     void setMapProp (Map map) {
-        println "fired map convertor with map $map"
-
         mapProp.clear()
         mapProp.putAll(map)
     }
