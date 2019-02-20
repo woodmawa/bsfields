@@ -91,16 +91,14 @@ class FormFieldsTagLib {
      */
     def displayMap = { attrs, body ->
 
-        def context = attrs.context  //parent calling context
-        Map ctxmap = context?.binding.variables
         def mapValue = attrs.value
-        def bean = attrs.bean ?: ctxmap?.bean
-        def property = attrs.property ?: ctxmap?.property
+        def bean = attrs.bean ?: pageScope.bean
+        def property = attrs.property ?: pageScope?.property
 
-        def domainClassName = attrs.entityName ?: ctxmap?.get("entityName")  //name of domain class
+        def domainClassName =   pageScope.beanClass
 
         if (!mapValue)
-            mapValue = bean[property] != null ? bean[property] : '<i class="fas fa-minus" style="color: red;"></i>'
+            mapValue = bean.hasProperty ("$property") ? bean["$property"] : [:]
 
         // comment out ww def propertyClassifier = propertyClassToType(ctxmap)
 
@@ -112,11 +110,11 @@ class FormFieldsTagLib {
         def len = entries.size()
         for (entry in entries) {
             mapString << "${entry.key} : ${entry.value.toString()}"
-            if (i++ == len) {
+            if (++i == len) {
                 mapString << "]"
                 break
             }
-            if (i >= 2) {
+            if (i >= 3) {
                 mapString << ", ...]"
                 break
             } else {
@@ -125,12 +123,9 @@ class FormFieldsTagLib {
         }
 
         //put calculated string to output stream
-        out << mapString ?: ''
-
-        if (context) {
-            context.binding.displayMapStr = mapString
-        }
-        mapString
+        def output =  (mapValue.size() >0 ) ? mapString : '[:]'
+        out << output
+        output
     }
 
     class BeanAndPrefix {

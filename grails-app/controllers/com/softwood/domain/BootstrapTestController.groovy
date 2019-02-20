@@ -23,7 +23,8 @@ class BootstrapTestController {
     }
 
     def show(Long id) {
-        respond bootstrapTestService.get(id)
+        def bst =bootstrapTestService.get(id)
+        respond bst
     }
 
     def plain(Long id) {
@@ -96,6 +97,15 @@ class BootstrapTestController {
 
         LocalDateTime ldtProp
         LocalDate dtProp
+        String mapPropStr = params.mapProp
+
+        Map map = new HashMap()
+
+        String[] pairs = mapPropStr?.replaceAll("[{}]", '').split(',')
+        for (pair in pairs){
+            String[] kv = pair.split('=')
+            map.put (kv[0], kv[1])
+        }
 
         if (bootstrapTest.hasErrors()) {
             bootstrapTest.clearErrors()
@@ -104,6 +114,7 @@ class BootstrapTestController {
                 dtProp = LocalDate.parse(params.dtProp?.toString(), DateTimeFormatter.ISO_LOCAL_DATE) //ISO_LOCAL_DATE
                 bootstrapTest.ldtProp =  ldtProp
                 bootstrapTest.dtProp = dtProp
+                bootstrapTest.mapProp = map
                 bootstrapTest.validate()
             } catch (ex) {
                 println "exception $ex.message"

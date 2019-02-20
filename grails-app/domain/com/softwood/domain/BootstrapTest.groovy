@@ -8,11 +8,12 @@ class BootstrapTest {
 
     enum BootstrapTypes {
         Real,
-        Plastic
+        Plastic,
+        Fantastic
     }
 
     String strProp = "init value"
-    //Map mapProp = ['Peter': 'Grimes', 'Edward':'Elgar']
+    Map mapProp = ['Peter': 'Grimes', 'Edward':'Elgar']
     BootstrapTypes typeProp = BootstrapTypes.Plastic
     LocalDateTime ldtProp = LocalDateTime.now()
     LocalDate dtProp = LocalDate.now()
@@ -24,7 +25,7 @@ class BootstrapTest {
         typeProp nullable: false
         ldtProp nullable: true
         dtProp nullable: true
-        //mapProp nullable:true
+        mapProp nullable:true
         holder nullable: true
 
     }
@@ -81,5 +82,27 @@ class BootstrapTest {
 
         dtProp = dt
 
+    }
+
+    /* handle browser posted map representation */
+    void setMapProp (String browserString) {
+        println "fired map convertor mapStr $browserString"
+
+        Map map = new HashMap()
+
+        String[] pairs = browserString?.replaceAll("[{}]", '').split(',')
+        for (pair in pairs){
+            String[] kv = pair.split('=')
+            map.put (kv[0], kv[1])
+        }
+        mapProp = map
+    }
+
+    //needs this form as well or otherwise mapProp is not generated for the domain class
+    void setMapProp (Map map) {
+        println "fired map convertor with map $map"
+
+        mapProp.clear()
+        mapProp.putAll(map)
     }
 }

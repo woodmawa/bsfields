@@ -13,7 +13,6 @@
         <div class="btn-group input-group text col-sm-8 " >
             <%
                 def resultStr = bsf.displayMap(value:pageScope.variables.value ,
-                        context:this,
                         bean:pageScope.variables.bean,
                         property:pageScope.variables.property)
            %>
