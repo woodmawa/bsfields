@@ -47,23 +47,23 @@
                     <div class="dropdown-menu" aria-labelledby="references" >
                         <table class='table table-bordered table-striped table-condensed ' >
 
-                        <thead >
-                        <tr>
-                            <th class="bg-info text-white" scope="col">References</th>
-                         </tr>
-                        </thead>
-                        <tbody>
-                        <%-- for each property createLink and use as href for anchor --%>
-                        <g:each in="${pageScope.variables.value}" var="p">
+                            <thead >
                             <tr>
-                                <td scope="row"  >
-                                    <a href="${bsf.getPropertyValuesController(property:p)}" >${p?.toString()}</a>
-                                </td>
+                                <th class="bg-info text-white" scope="col">References</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                            <%-- for each property createLink and use as href for anchor --%>
+                            <g:each in="${pageScope.variables.value}" var="p">
+                                <tr>
+                                    <td scope="row"  >
+                                        <a href="${bsf.getPropertyValuesController(property:p)}" >${p?.toString()}</a>
+                                    </td>
+                                </tr>
                             </g:each>
-                        </tbody>
+                            </tbody>
                         </table>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
