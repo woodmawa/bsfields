@@ -17,7 +17,7 @@
 </g:if>
 <g:elseif test="${pageScope.variables.persistentProperty && pageScope.variables.persistentProperty instanceof org.grails.datastore.mapping.model.types.OneToMany}" >
             <div class="input-group text col-sm-8"  >
-                <input name="${property}" type='text' class="form-control" value ="${pageScope.variables.value}" placeholder="<empty>" />
+                <input name="${property}" type='text' class="form-control" value ="(widget)${pageScope.variables.value}" placeholder="<empty>" />
                 <div class="input-group-append dropdown dropright" >
                     <button class="btn btn-icon-fixed-width btn-outline-secondary  btn-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge badge-primary badge-pill" style="background-color: DarkSeaGreen  ; ">${pageScope.variables.value?.size() ?: 0 }</span>
