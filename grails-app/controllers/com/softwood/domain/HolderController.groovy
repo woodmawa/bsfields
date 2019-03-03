@@ -4,4 +4,7 @@ class HolderController {
 
     static scaffold = Holder
 
+    def select () {
+        [model:"hello"]
+    }
 }
